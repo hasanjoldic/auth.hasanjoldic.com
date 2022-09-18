@@ -20,15 +20,21 @@ jobs:
   publish:
     # needs: build
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
+
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: main
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
+
       - run: npm install lerna --global
       - run: lerna bootstrap
       - run: npm run publish
