@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-export async function hash(password: string) {
+export function hash(password: string) {
   const salt = crypto.randomBytes(16).toString("hex");
   const hash = crypto
     .pbkdf2Sync(password, salt, 1000, 64, "sha512")
@@ -9,7 +9,7 @@ export async function hash(password: string) {
   return { salt, hash };
 }
 
-export async function validate(password: string, salt: string, hash: string) {
+export function validate(password: string, salt: string, hash: string) {
   const inputHash = crypto
     .pbkdf2Sync(password, salt, 1000, 64, "sha512")
     .toString("hex");
