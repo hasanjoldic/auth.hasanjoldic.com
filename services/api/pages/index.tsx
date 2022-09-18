@@ -33,7 +33,17 @@ const Home: NextPage = () => {
 
   return (
     <Box>
-      <form onSubmit={handleSubmit(console.log)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+        })}
+      >
         <Paper elevation={1}>
           <Container>
             <EmailFieldBase

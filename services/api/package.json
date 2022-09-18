@@ -16,6 +16,7 @@
     "@hasan.joldic/theme": "^0.3.7",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
+    "cookies": "^0.8.0",
     "dotenv": "^16.0.2",
     "jsonwebtoken": "^8.5.1",
     "next": "12.3.0",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
+    "@types/cookies": "^0.7.7",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "18.7.18",
     "@types/passport": "^1.0.11",

@@ -1,8 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import jwt from "jsonwebtoken";
+import Cookies from "cookies";
 
 import { findUserByEmail, validate } from "../../lib";
+
+const cookieOptions: Cookies.SetOption = {
+  maxAge: 31536000000,
+  httpOnly: true,
+  sameSite: "strict",
+  overwrite: true,
+};
+
+if (process.env.NODE_ENV === "production") {
+  cookieOptions.domain = ".hasanjoldic.com";
+  cookieOptions.secure = true;
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,12 +53,15 @@ export default async function handler(
       }
     );
 
+    const cookies = new Cookies(req, res);
+
+    cookies.set("access_token", token, cookieOptions);
+
     res.status(200).send({
       user: {
         id: user.id,
         email: user.email,
       },
-      accessToken: token,
     });
 
     return;
