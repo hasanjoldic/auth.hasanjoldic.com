@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: ./services/api/Dockerfile
+    image: auth.hasanjoldic.com
+    restart: always
+    ports:
+      - 3050:3000
