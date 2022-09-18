@@ -12,6 +12,5 @@ RUN apt install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 RUN bash /tmp/nodesource_setup.sh
 RUN apt install nodejs -y
-# install lerna globally so we don't have to install it by running `npm install`
-# this way we can use only lerna to install all the dependencies
-RUN npm install --global lerna@^5.5.0
+RUN npm install lerna commitizen --global
+RUN commitizen init cz-conventional-changelog --save-dev --save-exact
