@@ -1,5 +1,5 @@
 {
-  "name": "@hasan.joldic/auth",
+  "name": "@hasanjoldic/auth",
   "version": "0.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,8 @@
     "clean": "rm -rf node_modules tsconfig.tsbuildinfo dist",
     "prebuild": "npm run clean",
     "build": "tsc -b",
-    "build:watch": "npm run build -- --watch"
+    "build:watch": "npm run build -- --watch",
+    "prepublish": "npm run build"
   },
   "author": "Hasan Joldic <office@hasanjoldic.com> (https://hasanjoldic.com/)",
   "license": "MIT",
@@ -17,8 +18,5 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.9"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

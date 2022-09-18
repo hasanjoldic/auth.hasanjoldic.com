@@ -5,7 +5,8 @@
     "init": "./scripts/init.sh",
     "packages-build-watch": "./scripts/packages-build-watch.sh",
     "services-start-watch": "./scripts/services-start-watch.sh",
-    "version": "lerna version --conventional-commits"
+    "version": "lerna version --conventional-commits",
+    "publish": "lerna publish from-package --registry https://npm.pkg.github.com/hasanjoldic"
   },
   "workspaces": {
     "packages": [
