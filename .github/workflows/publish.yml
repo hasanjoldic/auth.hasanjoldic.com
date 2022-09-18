@@ -1,8 +1,8 @@
-name: Version
+name: Publish
 
 on:
   push:
-    branches: ["develop"]
+    branches: ["main"]
 
 jobs:
   # build:
@@ -15,23 +15,23 @@ jobs:
   #     - run: npm ci
   #     - run: npm test
 
-  version:
+  publish:
     # needs: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: develop
+          ref: main
 
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - run: git config --global user.email "ci@hasanjoldic.com"
-      - run: git config --global user.name "CI"
+          registry-url: https://npm.pkg.github.com/
 
       - run: npm install lerna --global
       - run: lerna bootstrap
-
-      - run: npm run version
+      - run: echo //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN} > .npmrc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run publish

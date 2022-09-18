@@ -1,12 +1,20 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import jwt from "jsonwebtoken";
+import Cookies from "cookies";
 
 import { findUserByEmail, validate } from "../../lib";
 
-interface IRequestPayload {
-  email: string;
-  password: string;
+const cookieOptions: Cookies.SetOption = {
+  maxAge: 31536000000,
+  httpOnly: true,
+  sameSite: "strict",
+  overwrite: true,
+};
+
+if (process.env.NODE_ENV === "production") {
+  cookieOptions.domain = ".hasanjoldic.com";
+  cookieOptions.secure = true;
 }
 
 export default async function handler(
@@ -28,7 +36,9 @@ export default async function handler(
       res.status(401).send("Unauthorized");
     }
 
-    if (!process.env.JWT_SECRET) {
+    const { JWT_SECRET } = process.env;
+
+    if (!JWT_SECRET) {
       throw new Error("JWT_SECRET env variable not set.");
     }
 
@@ -37,18 +47,25 @@ export default async function handler(
         iss: "hasanjoldic.com",
         sub: user.id,
       },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       {
         expiresIn: "30 days",
       }
     );
+
+    const cookies = new Cookies(req, res);
+
+    cookies.set("access_token", token, cookieOptions);
 
     res.status(200).send({
       user: {
         id: user.id,
         email: user.email,
       },
-      accessToken: token,
     });
+
+    return;
   }
+
+  res.status(404).send("Not found.");
 }
