@@ -31,6 +31,7 @@ jobs:
 
       - run: npm install lerna --global
       - run: lerna bootstrap
-      - run: npm run publish
+      - run: echo //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN} > .npmrc
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run publish
