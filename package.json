@@ -1,0 +1,25 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "init": "./scripts/init.sh",
+    "packages-build-watch": "./scripts/packages-build-watch.sh",
+    "services-start-watch": "./scripts/services-start-watch.sh"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "services/*"
+    ]
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "typescript": "^4.8.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
