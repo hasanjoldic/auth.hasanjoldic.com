@@ -34,11 +34,11 @@ jobs:
         with:
           node-version: 16
 
+      - run: git remote set-url origin git@github.com:hasanjoldic/auth.hasanjoldic.com.git
       - run: git config --global user.email "ci@hasanjoldic.com"
       - run: git config --global user.name "CI"
 
       - run: npm install lerna --global
       - run: lerna bootstrap
 
-      - uses: actions/checkout@v3
       - run: npm run version
