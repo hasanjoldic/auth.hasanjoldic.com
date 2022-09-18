@@ -4,7 +4,8 @@
   "scripts": {
     "init": "./scripts/init.sh",
     "packages-build-watch": "./scripts/packages-build-watch.sh",
-    "services-start-watch": "./scripts/services-start-watch.sh"
+    "services-start-watch": "./scripts/services-start-watch.sh",
+    "version": "lerna version --conventional-commits"
   },
   "workspaces": {
     "packages": [
