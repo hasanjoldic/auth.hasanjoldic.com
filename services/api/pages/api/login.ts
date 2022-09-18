@@ -4,11 +4,6 @@ import jwt from "jsonwebtoken";
 
 import { findUserByEmail, validate } from "../../lib";
 
-interface IRequestPayload {
-  email: string;
-  password: string;
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -28,7 +23,9 @@ export default async function handler(
       res.status(401).send("Unauthorized");
     }
 
-    if (!process.env.JWT_SECRET) {
+    const { JWT_SECRET } = process.env;
+
+    if (!JWT_SECRET) {
       throw new Error("JWT_SECRET env variable not set.");
     }
 
@@ -37,7 +34,7 @@ export default async function handler(
         iss: "hasanjoldic.com",
         sub: user.id,
       },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       {
         expiresIn: "30 days",
       }
@@ -50,5 +47,9 @@ export default async function handler(
       },
       accessToken: token,
     });
+
+    return;
   }
+
+  res.status(404).send("Not found.");
 }
