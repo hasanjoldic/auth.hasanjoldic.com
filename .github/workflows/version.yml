@@ -34,7 +34,6 @@ jobs:
         with:
           node-version: 16
 
-      - run: git check
       - run: git config --global user.email "ci@hasanjoldic.com"
       - run: git config --global user.name "CI"
 
