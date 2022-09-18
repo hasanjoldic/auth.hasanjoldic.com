@@ -21,10 +21,10 @@ const Content = styled("div")(({ theme }) => ({
 }));
 
 interface Props extends AppProps {
-  paletteMode: PaletteMode;
+  cookie: string | undefined;
 }
 
-const App = ({ Component, pageProps, paletteMode }: Props) => {
+const App = ({ Component, pageProps, cookie }: Props) => {
   const router = useRouter();
 
   const handleNavigate = (path: string) => {
@@ -32,7 +32,7 @@ const App = ({ Component, pageProps, paletteMode }: Props) => {
   };
 
   return (
-    <ThemeProvider paletteMode={paletteMode}>
+    <ThemeProvider cookie={cookie}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>Hasan Joldic</title>
@@ -51,17 +51,12 @@ const App = ({ Component, pageProps, paletteMode }: Props) => {
   );
 };
 
-App.getInitialProps = async (context: AppContext) => {
-  const paletteMode = getCookie("paletteMode", context.ctx.req?.headers.cookie);
+App.getInitialProps = async (
+  context: AppContext
+): Promise<Omit<Props, keyof AppProps>> => {
+  const cookie = context.ctx.req?.headers.cookie;
 
-  return { paletteMode } as unknown as Props;
+  return { cookie };
 };
-
-function getCookie(name: string, cookie?: string) {
-  return cookie
-    ?.split(";")
-    ?.find((row) => row.includes(name))
-    ?.split("=")[1];
-}
 
 export default App;
