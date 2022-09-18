@@ -1,5 +1,13 @@
 {
   "useNx": true,
   "useWorkspaces": true,
-  "version": "independent"
+  "version": "independent",
+  "command": {
+    "version": {
+      "allowBranch": "develop"
+    },
+    "publish": {
+      "allowBranch": "main"
+    }
+  }
 }
