@@ -39,4 +39,6 @@ jobs:
 
       - run: npm install lerna --global
       - run: lerna bootstrap
+
+      - uses: actions/checkout@v3
       - run: npm run version
