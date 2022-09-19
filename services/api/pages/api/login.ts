@@ -53,17 +53,11 @@ export default async function handler(
       }
     );
 
-    const cookies = new Cookies(req, res);
+    const cookies = new Cookies(req, res, { secure: true });
 
     cookies.set("access_token", token, cookieOptions);
 
-    res.status(200).send({
-      user: {
-        id: user.id,
-        email: user.email,
-      },
-    });
-
+    res.status(200).send("OK");
     return;
   }
 

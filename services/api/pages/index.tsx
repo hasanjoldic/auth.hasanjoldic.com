@@ -41,6 +41,14 @@ const Home: NextPage = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+          }).then((res) => {
+            console.log(res);
+            if (res.ok) {
+              const urlParams = new URLSearchParams(window.location.search);
+              const from = urlParams.get("from");
+
+              if (from) window.location.href = from;
+            }
           });
         })}
       >
