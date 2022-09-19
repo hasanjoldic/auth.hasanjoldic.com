@@ -6,6 +6,7 @@ services:
       context: ..
       dockerfile: ./services/api/Dockerfile
     image: auth.hasanjoldic.com
+    container_name: auth.hasanjoldic.com
     restart: always
     ports:
       - 3050:3000
