@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2022-09-22)
+
+
+### Features
+
+* **api:** remove httpOnly attribute on access_token cookie ([b927d2d](https://github.com/hasanjoldic/auth.hasanjoldic.com/commit/b927d2d9cbd01d2163494e7defe7bfe07f03d24e))
+
+
+
+
+
 ## 0.1.13 (2022-09-19)
 
 **Note:** Version bump only for package @hasanjoldic/auth

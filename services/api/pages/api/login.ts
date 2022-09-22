@@ -7,7 +7,7 @@ import { findUserByEmail, validate } from "../../lib";
 
 const cookieOptions: Cookies.SetOption = {
   maxAge: 31536000000,
-  httpOnly: true,
+  // httpOnly: true,
   sameSite: "strict",
   overwrite: true,
 };
